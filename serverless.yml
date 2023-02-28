@@ -1,0 +1,29 @@
+service: product-service
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-central-1
+  stage: dev
+
+functions:
+  getProductsList:
+    handler: src/product-service/getProductsList.handler
+    events:
+      - http:
+          method: GET
+          path: /products
+      - http:
+          method: GET
+          path: /product/available
+          cors: true
+
+
+  getProductsById:
+    handler: src/product-service/getProductsById.handler
+    events:
+      - http:
+          method: GET
+          path: /products/{id}

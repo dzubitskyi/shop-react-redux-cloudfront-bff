@@ -1,0 +1,34 @@
+[
+  {
+    "id": { "S": "48edfa5a-6b04-4785-87cd-ccf2080f09bb" },
+    "title": { "S": "Samsung Galaxy S21 FE 128GB Gray 5G" },
+    "description": { "S": "The Samsung Galaxy S21 FE 128GB Gray 5G combines the best of its predecessor, the Samsung S21 series, with a good price." },
+    "price": { "N": "519" }
+  },
+  {
+    "id": { "S": "a2c7d7b9-10ff-4d79-b327-c50cb447e79a" },
+    "title": { "S": "Apple iPhone 14 Pro 128GB Space Black" },
+    "description": { "S": "The Apple iPhone 14 Pro 128GB Space Black doesn't have a notch anymore." },
+    "price": { "N": "1299" }
+  },
+  {
+    "id": { "S": "4263dce1-ca23-4e3b-a8a5-5b7f90be2def" },
+    "title": { "S": "OnePlus Nord 2T 256GB Gray 5G" },
+    "description": { "S": "The OnePlus Nord 2T 256GB Gray 5G is a powerful mid-range smartphone that's very fast with average use." },
+    "price": { "N": "399" }
+  },
+  {
+    "id": { "S": "f5f68cdc-4e54-442d-bf08-0e631f386568" },
+    "title": { "S": "Sony Xperia 10 IV 128GB Black 5G" },
+    "description": { "S": "The Sony Xperia 10 IV 128GB Black 5G is a mid-range smartphone for average use." },
+    "price": { "N": "399" }
+  },
+  {
+    "id": { "S": "321f4a72-019b-4567-9fc5-f2029029fff0" },
+    "title": { "S": "Nokia G21 128GB Blue" },
+    "description": { "S": "Thanks to the large 5050mAh battery, you can use the Nokia G21 128GB Blue the entire day without having to charge in between." },
+    "price": { "N": "159" }
+  }
+]
+
+

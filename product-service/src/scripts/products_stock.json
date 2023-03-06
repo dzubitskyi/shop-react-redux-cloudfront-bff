@@ -1,0 +1,24 @@
+[
+  {
+    "product_id": { "S": "48edfa5a-6b04-4785-87cd-ccf2080f09bb" },
+    "count": { "N": "7" }
+  },
+  {
+    "product_id": { "S": "a2c7d7b9-10ff-4d79-b327-c50cb447e79a" },
+    "count": { "N": "13" }
+  },
+  {
+    "product_id": { "S": "4263dce1-ca23-4e3b-a8a5-5b7f90be2def" },
+    "count": { "N": "3" }
+  },
+  {
+    "product_id": { "S": "f5f68cdc-4e54-442d-bf08-0e631f386568" },
+    "count": { "N": "8" }
+  },
+  {
+    "product_id": { "S": "321f4a72-019b-4567-9fc5-f2029029fff0" },
+    "count": { "N": "0" }
+  }
+]
+
+

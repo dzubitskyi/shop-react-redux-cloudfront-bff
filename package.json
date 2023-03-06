@@ -2,13 +2,21 @@
   "name": "shop-react-redux-cloudfront-bff",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "product-service/src/handlers/handlers.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=development sls offline",
+    "products:insert": "node \"product-service/src/scripts/insertProducts.js\""
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "serverless": "^3.28.0"
+    "serverless": "^3.28.0",
+    "serverless-offline": "^12.0.4"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.282.0",
+    "@aws-sdk/lib-dynamodb": "^3.284.0",
+    "uuid": "^9.0.0"
   }
 }

@@ -8,9 +8,27 @@ provider:
   region: eu-central-1
   stage: dev
 
+  environment:
+    DB_PRODUCTS: ${self:service}-products-${sls:stage}
+    DB_PRODUCTS_STOCK: ${self:service}-stock-${sls:stage}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/*"
+
+plugins:
+  - serverless-offline
+
 functions:
   getProductsList:
-    handler: src/product-service/getProductsList.handler
+    handler: product-service/src/handlers/getProductsList.handler
     events:
       - http:
           method: GET
@@ -20,10 +38,53 @@ functions:
           path: /product/available
           cors: true
 
-
   getProductsById:
-    handler: src/product-service/getProductsById.handler
+    handler: product-service/src/handlers/getProductById.handler
     events:
       - http:
           method: GET
           path: /products/{id}
+
+  createProduct:
+    handler: product-service/src/handlers/createProduct.handler
+    events:
+      - http:
+          path: /products
+          method: post
+
+resources:
+  Resources:
+    ProductModelDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        TableName: ${self:provider.environment.DB_PRODUCTS}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: title
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+          - AttributeName: title
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+    StockModelDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        TableName: ${self:provider.environment.DB_PRODUCTS_STOCK}
+        AttributeDefinitions:
+          - AttributeName: product_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: product_id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+

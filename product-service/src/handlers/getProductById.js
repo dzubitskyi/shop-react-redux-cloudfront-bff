@@ -20,8 +20,7 @@ const get404ResponsePayload = () => ({
 
 async function query(params) {
     try {
-        const { Items } = await dynamoDBDocument.query(params);
-        return Items;
+        return (await dynamoDBDocument.query(params)).Items;
     } catch (error) {
         console.log('dynamoDBDocument::query', error);
         return [];
@@ -55,6 +54,8 @@ function getProductParams(productId) {
 }
 
 module.exports.handler = async (event) => {
+    console.log('getProductById', event);
+
     const productId = event?.pathParameters?.id;
 
     const productStock = await query(getProductStockParams(productId));

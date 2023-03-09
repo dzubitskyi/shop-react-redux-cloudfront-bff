@@ -76,6 +76,8 @@ async function transact(params) {
 }
 
 module.exports.handler = async (event) => {
+    console.log('createProduct', event);
+
     const body = JSON.parse(event.body);
 
     if (isValidProductData(body)) {

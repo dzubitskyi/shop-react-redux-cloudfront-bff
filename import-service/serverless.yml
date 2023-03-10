@@ -1,0 +1,49 @@
+service: import-service
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-central-1
+  stage: dev
+
+  environment:
+    FILES_BUCKET_NAME: ${ssm(${self:provider.region}):/import-service/${self:provider.stage}/s3/import}
+    REGION: ${self:provider.region}
+    UPLOAD_FOLDER: uploaded
+    PARSED_FOLDER: parsed
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action: 's3:ListBucket'
+      Resource:
+        - 'arn:aws:s3:::${self:provider.environment.FILES_BUCKET_NAME}'
+    - Effect: Allow
+      Action:
+        - 's3:*'
+      Resource:
+        - 'arn:aws:s3:::${self:provider.environment.FILES_BUCKET_NAME}/*'
+
+plugins:
+  - serverless-offline
+
+functions:
+  importProductsFile:
+    handler: src/handlers/handlers.importProductsFile
+    events:
+      - http:
+          method: get
+          path: /import
+          cors: true
+
+  importFileParser:
+    handler: src/handlers/handlers.importFileParser
+    events:
+      - s3:
+          bucket: ${self:provider.environment.FILES_BUCKET_NAME}
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: uploaded/
+            - suffix: .csv
+          existing: true

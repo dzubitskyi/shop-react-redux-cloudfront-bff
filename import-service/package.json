@@ -1,0 +1,16 @@
+{
+  "name": "import-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/handlers/handlers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Denys Zubitskyi",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.287.0",
+    "@aws-sdk/s3-request-presigner": "^3.287.0",
+    "csv-parser": "^3.0.0"
+  }
+}
